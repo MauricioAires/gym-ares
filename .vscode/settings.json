@@ -1,0 +1,11 @@
+
+{
+  "[prisma]": {
+     "editor.formatOnSave": true
+  },
+  "cSpell.words": [
+    "bitname",
+    "gympass",
+    "postgresql"
+  ]
+}
