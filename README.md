@@ -9,6 +9,12 @@ Design Patterns utilizados
 - Repository Design Pattern (facilitar a implementação de testes)
 - Factory design pattern
 
+RBAC (Role-Based Access Control) é um modelo de controle de acesso baseado em funções, onde as permissões são atribuídas com base no papel ou função que um usuário possui dentro de uma organização.
+
+
+CI = Continuous Integration
+CD = Continuous Deployment/Delivery
+
 ## Tecnologias
 
 - [Typescript](https://www.typescriptlang.org/)
