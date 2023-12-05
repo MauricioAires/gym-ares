@@ -1,0 +1,22 @@
+name: Run Unit Tests # Nome do workflow
+
+on: [push] # quando executar esse CI (sempre que realizar um push para a repositório)
+
+jobs:
+  run-unit-tests:  # nome do job
+    name: Run Unit Tests
+    runs-on: ubuntu-latest # Utilizar o sistema operacional unix
+
+    steps:
+      - uses : actions/checkout@v3 # realizar o clone da aplicação
+      - uses : actions/setup-node@v3 # instalar o node
+        with:
+          node-version: 18 # Especificar a versão do node
+          cache: "npm" # cache das dependências para acelerar o processo de CI
+
+      - run: npm ci # run executar comandos no terminal
+
+      - run: npm run test
+
+
+
