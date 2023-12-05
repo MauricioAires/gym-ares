@@ -17,6 +17,10 @@ jobs:
       - run: npm ci # run executar comandos no terminal
 
       - run: npm run test
+        env:
+            NODE_ENV: 'test'
+            BCRYPT_SALT:  ${{ secrets.BCRYPT_SALT }}
+            JWT_SECRET:  ${{ secrets.JWT_SECRET }}
 
 
 
