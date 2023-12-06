@@ -1,16 +1,11 @@
-name: Run E2E Tests # Nome do workflow
+name: Run E2E Tests
 
-on: [pull_request] # quando executar esse CI (sempre que realizar um push para a repositório)
+on: [pull_request]
 
 jobs:
-  run-e2e-tests:  # nome do job
+  run-e2e-tests:
     name: Run E2E Tests
-    runs-on: ubuntu-latest # Utilizar o sistema operacional unix
-    env:
-        NODE_ENV: 'test'
-        BCRYPT_SALT:  ${{ secrets.BCRYPT_SALT }}
-        JWT_SECRET:  ${{ secrets.JWT_SECRET }}
-        DATABASE_URL:  ${{ secrets.DATABASE_URL }}
+    runs-on: ubuntu-latest
 
     services:
       postgres:
@@ -20,19 +15,20 @@ jobs:
         env:
           POSTGRESQL_USERNAME: docker
           POSTGRESQL_PASSWORD: docker
-          POSTGRESQL_DATABASE: gympasares
+          POSTGRESQL_DATABASE: apisolid
 
     steps:
-      - uses : actions/checkout@v3 # realizar o clone da aplicação
-      - uses : actions/setup-node@v3 # instalar o node
-        with:
-          node-version: 18 # Especificar a versão do node
-          cache: "npm" # cache das dependências para acelerar o processo de CI
+      - uses: actions/checkout@v3
 
-      - run: npm ci # run executar comandos no terminal
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'npm'
+
+      - run: npm ci
 
       - run: npm run test:e2e
-
-
-
-
+        env:
+          JWT_SECRET: testing
+          BCRYPT_SALT: 6
+          DATABASE_URL: "postgresql://docker:docker@localhost:5432/apisolid?schema=public"
